@@ -1,0 +1,44 @@
+<div class="container h-100 py-2">
+  <div class="mb-4">
+    <% if current_user.is_artist %>
+      <%= link_to "Retour à la liste", venue_profiles_path %>
+    <% else %>
+      <%= link_to "Retour au dashboard", dashboard_path(current_user.id) %>
+    <% end %>
+  </div>
+
+  <div class="container mt-4 card p-0 mb-5">
+
+    <div class="event_header d-flex flex-row flex-wrap" style="border-bottom: 1px solid rgba(255, 255, 255, 0.231)">
+      <div class="col-md-8 p-0">
+        <% if @venue_profile.venuepict.attached? %>
+          <%= image_tag @venue_profile.venuepict, alt: "venue picture", style: "width: 100%; border-top-left-radius: 8px"%>
+        <% else %>
+          <%= image_tag "venue_profile.png", alt: "venue picture", style: "width: 100%; border-top-left-radius: 8px"%>
+        <% end %>
+      </div>
+      <div class="col-md-4 p-3 d-flex flex-column align-items-center justify-content-center">
+        <h1 class="mb-4"><%= @venue_profile.name %></h1>
+        <h3><%= @venue_profile.address%></h3>
+        <h4><%= @venue_profile.zipcode%>, <%= @venue_profile.city%></h4>
+      </div>
+    </div>
+
+    <div class="row py-2 py-md-4 py-lg-4"  >
+      <div class="col-md-7 offset-xl-1">
+        <h3>À propos de cet établissement :</h3>
+        <p class="lead"><%= @venue_profile.description%></p>
+      </div>
+      <div class="col-xl-4 col-md-5 text-md-start pt-md-2 pb-2 pb-md-0 mb-4 mb-md-0 pe-md-4 ps-2">
+        <p>Type: <%= @venue_profile.type_of_location%></p>
+        <p>Capacité d'accueil: <%= @venue_profile.capacity%> personnes</p>
+      <% if current_user.id == @venue_profile.user_id %>
+        <%= link_to "Modifier mon profil", edit_venue_profile_path, class:"btn btn-lg btn-primary mb-1 w-100" %>
+        <% elsif current_user.is_artist? %>
+          <%= button_to "contacter", conversations_path, class: "btn btn-lg btn-primary mb-1 w-100", params: { sender_id: current_user.id, recipient_id: @venue_profile.user.id } %>
+        <% end %>
+      </div>
+    </div>
+
+  </div>
+</div>

@@ -1,0 +1,57 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+
+ *= require styles
+ *= require home
+ *= require_self
+ */
+ /* ------------ TOP SCROLL BUTTON ----------------------------*/
+ #scroll {
+  position:fixed;
+  right:80px;
+  bottom:80px;
+  cursor:pointer;
+  width:50px;
+  height:50px;
+  background-color:#C52B6F;
+  display:none;
+  -webkit-border-radius:60px;
+  -moz-border-radius:60px;
+  border-radius:60px;
+  z-index:10008;
+}
+#scroll span {
+  position:absolute;
+  top:50%;
+  left:50%;
+  margin-left:-8px;
+  margin-top:-12px;
+  height:0;
+  width:0;
+  border:8px solid transparent;
+  border-bottom-color:#ffffff;
+}
+#scroll:hover {
+  background-color:#A0C8E6;
+  opacity:1;
+}
+/* Smartphones (portrait and landscape) ----------- */
+
+@media only screen and (max-width: 770px) {
+  #scroll {
+    width:40px;
+    height:40px;
+    right:30px;
+    bottom:30px;
+  }
+}
